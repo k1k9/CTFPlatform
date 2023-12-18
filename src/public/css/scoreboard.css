@@ -1,0 +1,35 @@
+section.scoreboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+section.scoreboard .table .table-element:nth-child(2) {
+    font-size: 1.5rem;
+    color: var(--orange);
+    text-shadow: 1px 1px 0 var(--orange-dark);
+}
+
+section.scoreboard .table .table-element:nth-child(3),
+section.scoreboard .table .table-element:nth-child(4) {
+    font-size: 1.2rem;
+    color: var(--blue);
+    text-shadow: 1px 1px 0 var(--blue-dark);
+}
+
+section.scoreboard .table .table-element.active .username {
+    position: relative;
+}
+
+section.scoreboard .table .table-element.active .username::before {
+    content: 'YOU';
+    position: absolute;
+    top: -15%;
+    left: -8%;
+    font-size: .7rem;
+    transform: rotate(-15deg);
+    color: var(--red);
+    text-shadow: 1px 1px 0 var(--red-dark);
+}

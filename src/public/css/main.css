@@ -1,0 +1,203 @@
+@import url('/css/include/_colors.css');
+@import url('/css/include/_normalize.css');
+@import url('/css/include/_animations.css');
+@import url('/css/include/_scrollbar.css');
+@import url('/css/include/_header.css');
+
+body {
+    color: var(--white);
+    background: var(--black);
+    font-size: 13px;
+    text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+    letter-spacing: -.5px;
+    font-weight: normal;
+    line-height: 1.3;
+    font-family: 'Press Start 2P', cursive;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    letter-spacing: .5px;
+}
+
+*, h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+input, textarea, select {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100px;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 2px solid var(--white);
+    outline: none;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 1rem;
+}
+
+input[type=submit] {
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    font-size: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+input[type=submit]:hover {
+    background-color: var(--orange-dark);
+}
+
+main {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: var(--black);
+    box-sizing: border-box;
+    padding: 15px 30px;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+main .content {
+    max-height: 80vh;
+    height: 80vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+main .content section {
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding: 2rem 1rem;
+    height: 80vh;
+}
+
+section.error {
+    position: relative;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+section.error img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+}
+
+section.error h3 {
+    font-size: 5rem;
+    z-index: 2;
+}
+
+section.error p {
+    z-index: 2;
+}
+
+h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+h3.orange {
+    color: var(--orange);
+    text-shadow: 3px 3px 0 var(--orange-dark);
+}
+
+h3.blue {
+    color: var(--blue);
+    text-shadow: 3px 3px 0 var(--blue-dark);
+}
+
+h3.white {
+    color: var(--white);
+    text-shadow: 3px 3px 0 var(--pink-dark);
+}
+
+h3.pink {
+    color: var(--pink);
+    text-shadow: 3px 3px 0 var(--pink-dark);
+}
+
+h3.green {
+    color: var(--green);
+    text-shadow: 3px 3px 0 var(--green-dark);
+}
+
+h3.red {
+    color: var(--red);
+    text-shadow: 3px 3px 0 var(--red-dark);
+}
+
+.table {
+    display: grid;
+    list-style: none;
+    width: 90%;
+    margin: 0 auto;
+    row-gap: 1.5rem;
+    text-transform: uppercase;
+}
+
+.table .table-header {
+    color: var(--pink);
+    display: grid;
+    grid-template-columns: 1fr 2fr .5fr;
+    text-shadow: 2px 2px 0 var(--pink-dark);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.table .table-element {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr .5fr;
+    font-size: 1rem;
+}
+
+.home {
+    overflow-y: hidden !important;
+}
+
+.home header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.home header h3 {
+    margin-bottom: 1rem;
+}
+
+.home header p {
+    font-size: 0.6rem;
+    opacity: 0.6;
+}
+
+.home ol {
+    width: 100%;
+    height: 85%;
+    display: grid;
+    box-sizing: border-box;
+    padding: 2rem 5rem;
+    gap: 1.2rem;
+    overflow-y: auto !important;
+    border-top: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+}

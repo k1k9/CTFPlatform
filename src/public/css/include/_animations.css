@@ -1,0 +1,11 @@
+/* FLIP */
+.anim-flip{
+    position: relative;
+    animation: flip 8s infinite;
+    animation-delay: 5s;
+}
+@keyframes flip {
+    0%,80% {
+      transform: rotateY(360deg) 
+    }
+  }

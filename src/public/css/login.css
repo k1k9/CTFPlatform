@@ -1,0 +1,33 @@
+.login form, .register form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 1.3rem;
+}
+
+.login form input[type=submit], .register form input[type=submit] {
+    background-color: var(--pink);
+    color: var(--white);
+    border: none;
+    font-size: 1rem;
+    padding: 1rem 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.login form input[type=submit]:hover, .register form input[type=submit]:hover {
+    background-color: var(--pink-dark);
+}
+
+.register p {
+    opacity: 0.4;
+}
+
+.register form input[type=submit] {
+    background-color: var(--blue);
+}
+
+.register form input[type=submit]:hover {
+    background-color: var(--blue-dark);
+}

@@ -1,0 +1,9 @@
+.idea
+.env
+.vscode
+
+src/vendor
+src/composer.lock
+
+src/tasks.json
+src/config.json

@@ -1,0 +1,15 @@
+{
+    "name": "k1k9/ctf_mvc_sh",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "k1k9",
+            "email": "k1k9@protonmail.com"
+        }
+    ],
+    "require": {}
+}

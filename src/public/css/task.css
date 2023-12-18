@@ -1,0 +1,234 @@
+/* Level colors */
+.level-easy {
+    color: var(--level-easy);
+}
+
+.level-medium {
+    color: var(--level-medium);
+}
+
+.level-hard {
+    color: var(--level-hard);
+}
+
+.level-???? {
+    color: var(--level-color);
+}
+
+/* Add Task */
+.addTask form {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-bottom: 2rem;
+}
+
+.addTask form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.addTask form .form-group label {
+    font-size: 1.2rem;
+}
+
+.addTask form button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    background-color: var(--hover-accent);
+    color: var(--background);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.addTask form button:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Task Detail */
+.taskDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+}
+
+.taskDetails header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+}
+
+.taskDetails header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--blue);
+    text-shadow: 4px 4px 0 var(--blue-dark);
+}
+
+.taskDetails header h2.easy {
+    color: var(--green);
+    text-shadow: 4px 4px 0 var(--green-dark);
+}
+
+.taskDetails header h2.medium {
+    color: var(--orange);
+    text-shadow: 4px 4px 0 var(--orange-dark);
+}
+
+.taskDetails header h2.hard {
+    color: var(--red);
+    text-shadow: 4px 4px 0 var(--red-dark);
+}
+
+.taskDetails header .metadata {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+}
+
+.taskDetails header .metadata .rating {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.taskDetails header .metadata .rating .star {
+    width: 20px;
+    height: auto;
+}
+
+.taskDetails .content {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+    height: 100%;
+    line-height: 150%;
+}
+
+.taskDetails .content .content__text{
+    display: flex;
+    flex-direction: column;
+}
+
+.taskDetails .content .content__text a{
+    text-decoration: none;
+    color: var(--blue);
+}
+
+.taskDetails .content p.solved {
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--green);
+    padding-top: 2rem;
+    text-shadow: 2px 2px 0 var(--green-dark);
+}
+
+.taskDetails .content form {
+    display: flex;
+    padding-top: 5rem;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.taskDetails .content form input[type=submit] {
+    width: 50%;
+    margin: 0;
+    background-color: var(--gray);
+    border: 2px solid var(--gray);
+    border-left: none;
+    color: var(--dark);
+}
+
+
+.taskDetails .content form input[type=submit]:hover {
+    background-color: var(--dark);
+    color: var(--orange);
+    border: 2px solid var(--white);
+    border-left: none;
+}
+
+section.taskList {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+section.taskList ul {
+    display: grid;
+    list-style: none;
+    width: 90%;
+    margin: 0 auto;
+    row-gap: 1.5rem;
+    text-transform: uppercase;
+}
+
+section.taskList ul .header {
+    color: var(--pink);
+    text-shadow: 2px 2px 0 var(--pink-dark);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 20% 54% 16%;
+}
+
+section.taskList ul .element {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+section.taskList ul .element:nth-child(2n) {
+    background: var(--background);
+}
+
+section.taskList ul .element a {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 20% 60% 10%;
+    text-decoration: none;
+    color: var(--white);
+}
+
+section.taskList ul .element a.easy:hover {
+    color: var(--level-easy);
+}
+
+section.taskList ul .element a.medium:hover {
+    color: var(--level-medium);
+}
+
+section.taskList ul .element a.hard:hover {
+    color: var(--level-hard);
+}
+
+section.taskList ul .element a.level:hover {
+    color: var(--level-color);
+}
