@@ -10,7 +10,7 @@ Simple CTF platform for hosting CTFs. This is a work in progress.
 1. Create a database
 2. Create a user with full access to the database
 3. Create /src/config.json
-```json
+```
 {
     "dbHost": "db",
     "dbName": "dbname",
