@@ -197,7 +197,7 @@ section.taskList ul .header {
     margin-bottom: 1.5rem;
     width: 100%;
     display: grid;
-    grid-template-columns: 15% 22% 52% 11%;
+    grid-template-columns: 15% 22% 47% 16%;
 }
 
 section.taskList ul .element {
