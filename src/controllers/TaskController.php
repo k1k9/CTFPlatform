@@ -29,8 +29,20 @@ class TaskController extends AbstractController
         /**
          * Render full list of challenges
          */
-         $tasks = $this->task->getTasks();
-         for ($i = 0; $i < count($tasks); $i++) {
+        $tasks = $this->task->getTasks();
+
+        if ($tasks && isset($_SESSION['id'])) {
+            for ($i = 0; $i < count($tasks); $i++) {
+                if ($this->user->checkSolvedTask($_SESSION['id'], $tasks[$i]['id']))
+                {
+                    $tasks[$i]['isSolved'] = 'solved';
+                } else {
+                    $tasks[$i]['isSolved'] = '';
+                }
+            }
+        }
+
+        for ($i = 0; $i < count($tasks); $i++) {
             $tasks[$i]['category'] = $this->category->getCategory($tasks[$i]['category']);
          }
         $this->renderView('task/List', data: ["tasks" => $tasks], head: ['title' => 'All challenges', 'css' => '/css/task.css']);
