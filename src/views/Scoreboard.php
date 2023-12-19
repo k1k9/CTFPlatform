@@ -14,7 +14,7 @@ function ordinalSuffix($number) {
 }
 ?>
 <section class="scoreboard">
-    <h3 class="orange anim-flip">Scoreboard</h3>
+    <h3 class="orange anim-flip">TEST</h3>
     <ul class="table">
         <li class="table-header">
             <span class="rank">RANK</span>
