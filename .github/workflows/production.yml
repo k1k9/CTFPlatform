@@ -1,0 +1,29 @@
+name: Deploy project on server
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  
+jobs:
+  run_pull:
+    environment: production
+    name: run pull
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Installing .ssh keys
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Pulling changes
+      run: |
+        ssh -o IdentitiesOnly=yes -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+        "git stash && git pull"
+
+    - name: Cleaning up
+      run: rm -rf ~/.ssh
