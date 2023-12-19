@@ -193,7 +193,7 @@ section.taskList ul .header {
     text-shadow: 2px 2px 0 var(--pink-dark);
     font-size: 1.4rem;
     letter-spacing: 2px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     width: 100%;
     display: grid;
     grid-template-columns: 15% 24% 50% 16%;
@@ -213,6 +213,7 @@ section.taskList ul .element a {
     width: 100%;
     display: grid;
     grid-template-columns: 15% 25% 55% 10%;
+    padding: .5rem 0;
     text-decoration: none;
     color: var(--white);
 }
