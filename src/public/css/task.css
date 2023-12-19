@@ -182,10 +182,11 @@ section.taskList {
 section.taskList ul {
     display: grid;
     list-style: none;
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
     row-gap: .5rem;
     text-transform: uppercase;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 section.taskList ul .header {
@@ -196,7 +197,7 @@ section.taskList ul .header {
     margin-bottom: 1.5rem;
     width: 100%;
     display: grid;
-    grid-template-columns: 15% 22% 52% 16%;
+    grid-template-columns: 15% 22% 52% 11%;
 }
 
 section.taskList ul .element {
