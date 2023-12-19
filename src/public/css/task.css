@@ -184,7 +184,7 @@ section.taskList ul {
     list-style: none;
     width: 90%;
     margin: 0 auto;
-    row-gap: 1.5rem;
+    row-gap: .5rem;
     text-transform: uppercase;
 }
 
@@ -213,7 +213,7 @@ section.taskList ul .element a {
     width: 100%;
     display: grid;
     grid-template-columns: 15% 25% 55% 10%;
-    padding: .5rem 0;
+    padding: 1rem 0;
     text-decoration: none;
     color: var(--white);
 }
