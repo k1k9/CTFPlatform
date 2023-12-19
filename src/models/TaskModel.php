@@ -69,7 +69,7 @@ class TaskModel extends AbstractModel
     public function getSolves($id) {
         $mysqli = $this->connectMysql();
         if ($mysqli) {
-            $stmt = $mysqli->prepare("SELECT * FROM Solves WHERE task_id = ?;");
+            $stmt = $mysqli->prepare("SELECT * FROM Solves WHERE task_id = ? AND user_id NOT IN (SELECT id FROM Users WHERE permissions = 2);");
             $stmt->bind_param('i', $id);
             $stmt->execute();
             $result = $stmt->get_result();
