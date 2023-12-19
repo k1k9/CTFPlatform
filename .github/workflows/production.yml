@@ -23,7 +23,7 @@ jobs:
     - name: Pulling changes
       run: |
         ssh -o IdentitiesOnly=yes -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-        "cd ${{ secrets.ROOT_DIR }} git stash && git pull"
+        "cd ${{ secrets.ROOT_DIR }} && git stash && git pull"
 
     - name: Cleaning up
       run: rm -rf ~/.ssh
