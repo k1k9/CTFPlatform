@@ -213,7 +213,7 @@ section.taskList ul .element:nth-child(2n) {
 section.taskList ul .element a {
     width: 100%;
     display: grid;
-    grid-template-columns: 15% 23% 57% 10%;
+    grid-template-columns: 15% 23% 52% 10%;
     padding: 1rem 0;
     text-decoration: none;
     color: var(--white);
