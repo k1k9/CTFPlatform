@@ -9,7 +9,7 @@
                 <span class="points">Points</span>
         </li>
         <?php foreach ($tasks as $task): ?>
-            <li class="element <?= $task['isSolved'] ?>">
+            <li class="element <?= $task['isSolved'] ?? '' ?>">
                 <a href="/t/<?= $task['id'] ?>" class="<?= $task['level'] ?>">
                 <span class="level level-<?= $task['level'] ?>">
                         <?= ucfirst($task['level']) ?>
