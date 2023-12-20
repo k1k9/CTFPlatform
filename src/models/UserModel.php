@@ -215,6 +215,11 @@ class UserModel extends AbstractModel
          * Delete user from database
          */
         $mysqli = $this->connectMysql();
+        
+        $stmt = $mysqli->prepare("DELETE FROM Solves WHERE user_id = ?");
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
         $stmt = $mysqli->prepare("DELETE FROM Users WHERE id = ?");
         $stmt->bind_param('i', $id);
         $stmt->execute();
