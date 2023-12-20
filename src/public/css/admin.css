@@ -17,15 +17,23 @@ section.adminTasks .header p {
 
 section.users .table .table-header {
     display: grid;
-    grid-template-columns: 3fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 3fr 1fr;
+    font-size: 1rem;
+    gap: 1rem;
+
 }
 
 section.users .table .table-element {
-    grid-template-columns: 3fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 3fr 1fr;
+    gap: 1rem;
 }
 
 section.users .table .table-element .username {
     position: relative;
+}
+
+section.users .table .table-element .visited {
+    font-size: .7rem;
 }
 
 section.users .table .table-element .username .id {

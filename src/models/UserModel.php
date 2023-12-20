@@ -68,14 +68,18 @@ class UserModel extends AbstractModel
             $password_hash = PASSWORD_DEFAULT;
         }
         $result = password_verify($password, $password_hash);
-        $stmt->close();
-        $mysqli->close();
         if ($result) {
             $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['permissions'] = $permissions;
-            return true;
+            # Update last_login
+            $stmt = $mysqli->prepare("UPDATE Users SET last_login = NOW() WHERE id = ?");
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
         }
+        $stmt->close();
+        $mysqli->close();
+        if ($result) return true;
         return false;
     }
 
@@ -104,7 +108,7 @@ class UserModel extends AbstractModel
             $stmt->store_result();
 
             if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id, $username, $password, $permissions, $created_at, $points, $last_solve);
+                $stmt->bind_result($id, $username, $password, $permissions, $created_at, $points, $last_solve, $last_login);
                 $stmt->fetch();
                 $result = [
                     'id' => $id,
@@ -114,6 +118,7 @@ class UserModel extends AbstractModel
                     'created_at' => $created_at,
                     'points' => $points,
                     'last_solve' => $last_solve,
+                    'last_login' => $last_login,
                 ];
             } else {
                 $result = false;
@@ -131,14 +136,14 @@ class UserModel extends AbstractModel
          */
         $mysqli = $this->connectMysql();
         if ($limit != null){
-            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve FROM Users ORDER BY points DESC, last_solve ASC LIMIT ?");
+            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve, last_login FROM Users ORDER BY points DESC, last_solve ASC LIMIT ?");
             $stmt->bind_param('i', $limit);
         } else {
-            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve FROM Users ORDER BY points DESC, last_solve ASC");
+            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve, last_solve FROM Users ORDER BY points DESC, last_solve ASC");
         }
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($id, $username, $points, $permissions, $last_solve);
+        $stmt->bind_result($id, $username, $points, $permissions, $last_solve, $last_login);
         $result = [];
         while ($stmt->fetch()) {
             $result[] = [
@@ -147,6 +152,7 @@ class UserModel extends AbstractModel
                 'points' => $points,
                 'permissions' => $permissions,
                 'last_solve' => $last_solve ?? '',
+                'last_login' => $last_login ?? ''
             ];
         }
         $stmt->close();
