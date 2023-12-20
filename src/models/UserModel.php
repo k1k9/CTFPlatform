@@ -14,6 +14,7 @@ class UserModel extends AbstractModel
     public array $created;
     public string $created_at;
     public int $points;
+    public array $last_solve;
 
     public function createUser(string $username, string $password) {
         /**
@@ -103,7 +104,7 @@ class UserModel extends AbstractModel
             $stmt->store_result();
 
             if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id, $username, $password, $permissions, $created_at, $points);
+                $stmt->bind_result($id, $username, $password, $permissions, $created_at, $points, $last_solve);
                 $stmt->fetch();
                 $result = [
                     'id' => $id,
@@ -112,6 +113,7 @@ class UserModel extends AbstractModel
                     'permissions' => $permissions,
                     'created_at' => $created_at,
                     'points' => $points,
+                    'last_solve' => $last_solve,
                 ];
             } else {
                 $result = false;
@@ -124,11 +126,12 @@ class UserModel extends AbstractModel
 
 
     public function getUsersAndSortByPoints() {
+        # TODO: Sort by points and last solve
         $mysqli = $this->connectMysql();
-        $stmt = $mysqli->prepare("SELECT id, username, points, permissions FROM Users ORDER BY points DESC");
+        $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve FROM Users ORDER BY points DESC, last_solve ASC");
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($id, $username, $points, $permissions);
+        $stmt->bind_result($id, $username, $points, $permissions, $last_solve);
         $result = [];
         while ($stmt->fetch()) {
             $result[] = [
@@ -198,7 +201,8 @@ class UserModel extends AbstractModel
          * Add solved task to user
          */
         $mysqli = $this->connectMysql();
-        $stmt = $mysqli->prepare("INSERT INTO Solves (user_id, task_id) VALUES (?,?)");
+        # Add solved task to user and timestamp
+        $stmt = $mysqli->prepare("INSERT INTO Solves (user_id, task_id, created_at) VALUES (?,?,NOW()) ON DUPLICATE KEY UPDATE created_at = NOW()");
         $stmt->bind_param('ii', $id, $task_id);
         $stmt->execute();
         $stmt->close();
