@@ -296,6 +296,7 @@ if (!isset($_POST['siteName']) || !isset($_POST['flagPrefix']) || !isset($_POST[
         id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT,
         task_id INT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES Users(id),
         FOREIGN KEY (task_id) REFERENCES Tasks(id))";
     if (!$mysqli->query($sql) === TRUE) {
