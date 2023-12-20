@@ -126,7 +126,9 @@ class UserModel extends AbstractModel
 
 
     public function getUsersAndSortByPoints() {
-        # TODO: Sort by points and last solve
+        /**
+         * Sort users by point and first solve
+         */
         $mysqli = $this->connectMysql();
         $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve FROM Users ORDER BY points DESC, last_solve ASC");
         $stmt->execute();
