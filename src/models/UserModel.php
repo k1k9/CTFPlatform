@@ -217,7 +217,7 @@ class UserModel extends AbstractModel
         $mysqli = $this->connectMysql();
         # Add solved task to user and timestamp
         $stmt = $mysqli->prepare("INSERT INTO Solves (user_id, task_id, created_at) VALUES (?,?,NOW()) ON DUPLICATE KEY UPDATE created_at = NOW()");
-        $stmt->bind_param('ii', $id, $task_id);
+        $stmt->bind_param('ii', $user_id, $task_id);
         $stmt->execute();
         $stmt->close();
         $mysqli->close();
