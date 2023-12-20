@@ -87,6 +87,10 @@ class AdminController extends AbstractController
             $config['flagPrefix'] = $_POST['flagPrefix'];
         }
 
+        if (isset($_POST['restrict']) && $_POST['restrict'] !== $config['restrict']) {
+            $config['restrict'] = $_POST['restrict'];
+        }
+
 
         if (isset($_POST['devmode']) && $_POST['devmode'] !== $config['devmode']) {
             $config['devmode'] = $_POST['devmode'];
