@@ -172,6 +172,21 @@
     border-left: none;
 }
 
+.taskDetails .content .topSolves {
+    opacity: 0.5;
+}
+
+.taskDetails .content .topSolves ol{
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.taskDetails .content .topSolves li{
+    padding: 1rem 0;
+}
+
+
 section.taskList {
     width: 100%;
     height: 100%;

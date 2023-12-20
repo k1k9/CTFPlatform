@@ -30,5 +30,18 @@ if (session_status() == PHP_SESSION_NONE) {
     <?php } elseif ($data['isSolved']) { ?>
         <p class="solved">You solved this task!!</p>
     <?php } ?>
+
+    <?php if (isset($_SESSION['is_admin'])) { if ($_SESSION['is_admin'] == true) { ?>
+        <div class="topSolves">
+            <p>Fastest users</p>
+            <ol>
+                <?php foreach ($data['topFirstSolves'] as $solve) { ?>
+                    <li title="<?= $solve['created_at'] ?>">
+                        <?= $solve['username'] ?>
+                    </li>
+                <?php } ?>
+            </ol>
+        </div>
+    <?php } } ?>
 </div>
 </section>

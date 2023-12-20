@@ -125,12 +125,17 @@ class UserModel extends AbstractModel
     }
 
 
-    public function getUsersAndSortByPoints() {
+    public function getUsersAndSortByPoints($limit = null) {
         /**
          * Sort users by point and first solve
          */
         $mysqli = $this->connectMysql();
-        $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve FROM Users ORDER BY points DESC, last_solve ASC");
+        if ($limit != null){
+            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve FROM Users ORDER BY points DESC, last_solve ASC LIMIT ?");
+            $stmt->bind_param('i', $limit);
+        } else {
+            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve FROM Users ORDER BY points DESC, last_solve ASC");
+        }
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($id, $username, $points, $permissions, $last_solve);
@@ -141,6 +146,7 @@ class UserModel extends AbstractModel
                 'username' => $username,
                 'points' => $points,
                 'permissions' => $permissions,
+                'last_solve' => $last_solve ?? '',
             ];
         }
         $stmt->close();
@@ -198,7 +204,7 @@ class UserModel extends AbstractModel
     }
 
 
-    public function addSolvedTask(int $id, int $task_id) {
+    public function addSolvedTask(int $user_id, int $task_id) {
         /**
          * Add solved task to user
          */

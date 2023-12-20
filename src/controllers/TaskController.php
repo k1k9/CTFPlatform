@@ -9,6 +9,7 @@ namespace app\controllers;
 use app\models\TaskModel;
 use app\models\UserModel;
 use app\models\CategoryModel;
+use app\models\SolvesModel;
 
 class TaskController extends AbstractController
 {
@@ -16,11 +17,13 @@ class TaskController extends AbstractController
     private TaskModel $task;
     private UserModel $user;
     private CategoryModel $category;
+    private SolvesModel $solves;
 
     public function __construct(){
         parent::__construct();
         $this->task = new TaskModel();
         $this->user = new UserModel();
+        $this->solves = new SolvesModel();
         $this->category = new CategoryModel();
     }
 
@@ -62,6 +65,7 @@ class TaskController extends AbstractController
 
             if (isset($_SESSION['id'])) {
                 $task['isSolved'] = $this->user->checkSolvedTask($_SESSION['id'], $id) ?? false;
+                $task['topFirstSolves'] = $this->solves->getTopSolves($id, 5);
             } else {
                 $task['isSolved'] = false;
             }
