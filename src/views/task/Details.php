@@ -33,6 +33,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <?php if (isset($_SESSION['is_admin'])) { if ($_SESSION['is_admin'] == true) { ?>
         <div class="topSolves">
+            <p>Flag: <?= $data['flag'] ?></p>
             <p>Fastest users</p>
             <ol>
                 <?php foreach ($data['topFirstSolves'] as $solve) { ?>
