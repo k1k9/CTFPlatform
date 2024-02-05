@@ -104,26 +104,31 @@ class UserModel extends AbstractModel
 
 
         if ($mysqli !== false) {
-            $stmt->execute();
-            $stmt->store_result();
+            try {
+                $stmt->execute();
+                $stmt->store_result();
 
-            if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id, $username, $password, $permissions, $created_at, $points, $last_solve, $last_login);
-                $stmt->fetch();
-                $result = [
-                    'id' => $id,
-                    'username' => $username,
-                    'password' => $password,
-                    'permissions' => $permissions,
-                    'created_at' => $created_at,
-                    'points' => $points,
-                    'last_solve' => $last_solve,
-                    'last_login' => $last_login,
-                ];
-            } else {
+                if ($stmt->num_rows > 0) {
+                    $stmt->bind_result($id, $username, $password, $permissions, $created_at, $points, $last_solve, $last_login);
+                    $stmt->fetch();
+                    $result = [
+                        'id' => $id,
+                        'username' => $username,
+                        'password' => $password,
+                        'permissions' => $permissions,
+                        'created_at' => $created_at,
+                        'points' => $points,
+                        'last_solve' => $last_solve,
+                        'last_login' => $last_login,
+                    ];
+                } else {
+                    $result = false;
+                }
+                $stmt->close();
+            }
+            catch (Exception $e) {
                 $result = false;
             }
-            $stmt->close();
             $mysqli->close();
         }
         return $result ?? false;
