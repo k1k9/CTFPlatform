@@ -7,7 +7,7 @@
             <p>Max 20 characters</p>
             <input type="password" placeholder="password" name="password" require>
             <p>Min 4 characters</p>
-            <input type="submit" value="Connect">
+            <input type="submit" value="Connect" data-umami-event="Signup button">
         </form>
     </div>
 </section>

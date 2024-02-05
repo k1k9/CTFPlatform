@@ -25,7 +25,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <?php if (isset($_SESSION['id']) && !$data['isSolved']){ ?>
     <form action="/t/<?=$data['id']?>" method="POST">
         <input type="text" placeholder="Flag: <?= FLAG_PREFIX ?>{3x4mpl3}" name="flag">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" data-umami-event="Submit flag button">
     </form>
     <?php } elseif ($data['isSolved']) { ?>
         <p class="solved">You solved this task!!</p>

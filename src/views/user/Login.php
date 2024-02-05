@@ -5,7 +5,7 @@
         <form action="/u/login" method="post">
             <input type="text" placeholder="username" name="username" require>
             <input type="password" placeholder="password" name="password" require>
-            <input type="submit" value="Connect">
+            <input type="submit" value="Connect" data-umami-event="Login button">
         </form>
     </div>
 </section>
