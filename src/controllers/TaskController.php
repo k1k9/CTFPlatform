@@ -87,7 +87,8 @@ class TaskController extends AbstractController
         $id = intval($id);
         $id = htmlspecialchars($id, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $task = $this->task->getTask($id) ?? false;
-        $flag = strtoupper($_POST['flag']) ?? false;
+        $flag = strtolower($_POST['flag']) ?? false;
+        $flag = str_replace(' ', '', $flag);
         $user = new UserController;
 
         // Check is task valid
@@ -115,7 +116,7 @@ class TaskController extends AbstractController
         }
 
         // Check is flag valid
-        if ($flag === $task['flag']) {
+        if (strtolower($flag) === strtolower($task['flag'])) {
             $user->addPoints($_SESSION['id'], $task['points']);
             $user->addSolvedTask($_SESSION['id'], $id);
             $this->redirect('/t/'.$id);
