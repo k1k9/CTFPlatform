@@ -17,6 +17,7 @@
     {
         echo "<link href='" . $head['css'] . "' rel='stylesheet'>";
     }?>
+    <script async src="https://eu.umami.is/script.js" data-website-id="d710fe72-11f4-4d3f-9d1c-f8e87000c1b3"></script>
 </head>
 
 <body>
