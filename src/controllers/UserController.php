@@ -47,7 +47,14 @@ class UserController extends AbstractController
             $username = htmlspecialchars($_POST['username'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
             $password = htmlspecialchars($_POST['password'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
             $password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Restric username length to min 4 and max 20
+            if (strlen($username) < 4 || strlen($username) > 20) {
+                return $this->redirect('/u/register');
+            }
+
             $created = $this->user->createUser($username, $password);
+
             if ($created) {
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
