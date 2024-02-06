@@ -91,7 +91,7 @@ class UserModel extends AbstractModel
         $mysqli = $this->connectMysql();
 
         // Get by username
-        if (strlen($username) > 3 && $mysqli) {
+        if ($username > 3 && $mysqli) {
             $stmt = $mysqli->prepare("SELECT * FROM Users WHERE username = ?");
             $stmt->bind_param('s', $username);
         }
