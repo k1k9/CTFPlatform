@@ -72,9 +72,16 @@ class UserModel extends AbstractModel
             $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['permissions'] = $permissions;
-            # Update last_login
-            $stmt = $mysqli->prepare("UPDATE Users SET last_login = NOW() WHERE id = ?");
+            # Get last solve 
+            $stmt = $mysqli->prepare("SELECT created_at FROM Solves WHERE user_id = ? ORDER BY created_at DESC LIMIT 1");
             $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result($last_solve);
+            $stmt->fetch();
+            # Update last_login and last_solve
+            $stmt = $mysqli->prepare("UPDATE Users SET last_login = NOW(), last_solve = ? WHERE id = ?");
+            $stmt->bind_param('si', $last_solve, $id);
             $stmt->execute();
         }
         $stmt->close();
@@ -135,17 +142,13 @@ class UserModel extends AbstractModel
     }
 
 
-    public function getUsersAndSortByPoints($limit = null) {
+    public function getUsersAndSortByPoints() {
         /**
          * Sort users by point and first solve
          */
         $mysqli = $this->connectMysql();
-        if ($limit != null){
-            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve, last_login FROM Users ORDER BY points DESC, last_solve ASC LIMIT ?");
-            $stmt->bind_param('i', $limit);
-        } else {
-            $stmt = $mysqli->prepare("SELECT id, username, points, permissions, last_solve, last_solve FROM Users ORDER BY points DESC, last_solve ASC");
-        }
+        $query = "SELECT id, username, points, permissions, last_solve, last_login FROM Users ORDER BY points DESC, last_solve ASC";
+        $stmt = $mysqli->prepare($query);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($id, $username, $points, $permissions, $last_solve, $last_login);
